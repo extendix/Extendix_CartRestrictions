@@ -63,7 +63,7 @@ class Extendix_CartRestrictions_Model_Rule
     }
 
     /**
-     * Get sales rule customer group Ids
+     * Get cart restriction rule customer group Ids
      *
      * @return array
      */

@@ -49,7 +49,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_G
     }
 
     /**
-     * Add websites to sales rules collection
+     * Add websites to cart restriction rule collection
      * Set collection
      *
      * @return Mage_Adminhtml_Block_Promo_Quote_Grid

@@ -52,7 +52,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     }
 
     /**
-     * Bind sales rule to customer group(s) and website(s).
+     * Bind cart restriction rule to customer group(s) and website(s).
      * Save rule's associated store labels.
      * Save product attributes used in rule.
      *
