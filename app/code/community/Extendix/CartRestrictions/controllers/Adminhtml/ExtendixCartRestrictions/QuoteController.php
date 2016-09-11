@@ -72,7 +72,6 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteControll
         }
 
         $model->getConditions()->setJsFormObject('rule_conditions_fieldset');
-        $model->getActions()->setJsFormObject('rule_actions_fieldset');
 
         Mage::register('current_cart_validation_rule', $model);
 
@@ -123,16 +122,10 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteControll
                     return;
                 }
 
-                if (isset($data['simple_action']) && $data['simple_action'] == 'by_percent'
-                && isset($data['discount_amount'])) {
-                    $data['discount_amount'] = min(100,$data['discount_amount']);
-                }
                 if (isset($data['rule']['conditions'])) {
                     $data['conditions'] = $data['rule']['conditions'];
                 }
-                if (isset($data['rule']['actions'])) {
-                    $data['actions'] = $data['rule']['actions'];
-                }
+
                 unset($data['rule']);
                 $model->loadPost($data);
 
@@ -230,6 +223,9 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteControll
 
     /**
      * Chooser source action
+     *
+     * @todo: Do we really need this in this controller? I guess that this method dones't have anything to do with
+     * cart validation functionality
      */
     public function chooserAction()
     {

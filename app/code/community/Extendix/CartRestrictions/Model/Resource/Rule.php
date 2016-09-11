@@ -84,8 +84,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
 
         // Save product attributes used in rule
         $ruleProductAttributes = array_merge(
-            $this->getProductAttributes(serialize($object->getConditions()->asArray())),
-            $this->getProductAttributes(serialize($object->getActions()->asArray()))
+            $this->getProductAttributes(serialize($object->getConditions()->asArray()))
         );
         if (count($ruleProductAttributes)) {
             $this->setActualProductAttributes($object, $ruleProductAttributes);
@@ -112,7 +111,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     }
 
     /**
-     * Save product attributes currently used in conditions and actions of rule
+     * Save product attributes currently used in conditions of rule
      *
      * @param Extendix_CartRestrictions_Model_Rule $rule
      * @param mixed $attributes
@@ -157,7 +156,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
      *
      * @todo: Check the regex. May be I have to change salesrule/rule_condition_product
      *
-     * Collect all product attributes used in serialized rule's action or condition
+     * Collect all product attributes used in serialized rule's condition
      *
      * @param string $serializedString
      *

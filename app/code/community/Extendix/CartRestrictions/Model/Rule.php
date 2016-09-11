@@ -55,11 +55,11 @@ class Extendix_CartRestrictions_Model_Rule
     /**
      * Get rule condition product combine model instance
      *
-     * @return Extendix_CartRestrictions_Model_Rule_Condition_Product_Combine
+     * @return Mage_Rule_Model_Action_Collection
      */
     public function getActionsInstance()
     {
-        return Mage::getModel('extendix_cartrestrictions/rule_condition_product_combine');
+        return new Mage_Rule_Model_Action_Collection();
     }
 
     /**

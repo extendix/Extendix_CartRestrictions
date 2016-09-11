@@ -108,6 +108,8 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
      *
      * @param string $attributeCode
      *
+     * @todo: Remove actions check and check if this really make sense because it performs kind of full table scan
+     *
      * @return Extendix_CartRestrictions_Model_Resource_Rule_Collection
      */
     public function addAttributeInConditionFilter($attributeCode)
@@ -116,7 +118,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
         $field = $this->_getMappedField('conditions_serialized');
         $cCond = $this->_getConditionSql($field, array('like' => $match));
 
-        /** @todo: MAy be we don't need the action thingi */
+        /** @todo: May be we don't need the action thingi */
         $field = $this->_getMappedField('actions_serialized');
         $aCond = $this->_getConditionSql($field, array('like' => $match));
 
