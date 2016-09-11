@@ -1,29 +1,9 @@
 <?php
 /**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magento.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magento.com for more information.
- *
- * @category    Mage
- * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      Tsvetan Stoychev <t.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
  */
-
 
 class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteController
     extends Mage_Adminhtml_Controller_Action
@@ -109,7 +89,7 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteControll
     }
 
     /**
-     * Promo quote save action
+     * Cart Restriction save action
      *
      */
     public function saveAction()
@@ -119,7 +99,7 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteControll
                 /** @var $model Extendix_CartRestrictions_Model_Rule */
                 $model = $this->_getRuleModel();
                 Mage::dispatchEvent(
-                    'adminhtml_controller_salesrule_prepare_save',
+                    'adminhtml_controller_extendix_cartrestrictions_prepare_save',
                     array('request' => $this->getRequest()));
                 $data = $this->getRequest()->getPost();
                 $data = $this->_filterDates($data, array('from_date', 'to_date'));

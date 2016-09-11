@@ -1,37 +1,10 @@
 <?php
 /**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magento.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magento.com for more information.
- *
- * @category    Mage
- * @package     Mage_SalesRule
- * @copyright  Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      Tsvetan Stoychev <t.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
  */
 
-
-/**
- * Sales Rule resource model
- *
- * @category Mage
- * @package Mage_SalesRule
- * @author Magento Core Team <core@magentocommerce.com>
- */
 class Extendix_CartRestrictions_Model_Resource_Rule
     extends Mage_Rule_Model_Resource_Abstract
 {
@@ -67,7 +40,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
      *
      * @param Mage_Core_Model_Abstract $object
      *
-     * @return Mage_SalesRule_Model_Resource_Rule
+     * @return Extendix_CartRestrictions_Model_Resource_Rule
      */
     protected function _afterLoad(Mage_Core_Model_Abstract $object)
     {
@@ -85,7 +58,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
      *
      * @param Mage_Core_Model_Abstract $object
      *
-     * @return Mage_SalesRule_Model_Resource_Rule
+     * @return Extendix_CartRestrictions_Model_Resource_Rule
      */
     protected function _afterSave(Mage_Core_Model_Abstract $object)
     {
@@ -118,28 +91,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
             $this->setActualProductAttributes($object, $ruleProductAttributes);
         }
 
-        // Update auto geterated specific coupons if exists
-        if ($object->getUseAutoGeneration() && $object->hasDataChanges()) {
-            Mage::getResourceModel('salesrule/coupon')->updateSpecificCoupons($object);
-        }
         return parent::_afterSave($object);
-    }
-
-    /**
-     * Retrieve coupon/rule uses for specified customer
-     *
-     * @param Mage_SalesRule_Model_Rule $rule
-     * @param int $customerId
-     *
-     * @return string
-     */
-    public function getCustomerUses($rule, $customerId)
-    {
-        $read = $this->_getReadAdapter();
-        $select = $read->select()->from($this->getTable('rule_customer'), array('cnt'=>'count(*)'))
-            ->where('rule_id = :rule_id')
-            ->where('customer_id = :customer_id');
-        return $read->fetchOne($select, array(':rule_id' => $rule->getRuleId(), ':customer_id' => $customerId));
     }
 
     /**
@@ -162,9 +114,9 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     /**
      * Save product attributes currently used in conditions and actions of rule
      *
-     * @param Mage_SalesRule_Model_Rule $rule
+     * @param Extendix_CartRestrictions_Model_Rule $rule
      * @param mixed $attributes
-     * @return Mage_SalesRule_Model_Resource_Rule
+     * @return Extendix_CartRestrictions_Model_Resource_Rule
      */
     public function setActualProductAttributes($rule, $attributes)
     {
@@ -202,6 +154,9 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     }
 
     /**
+     *
+     * @todo: Check the regex. May be I have to change salesrule/rule_condition_product
+     *
      * Collect all product attributes used in serialized rule's action or condition
      *
      * @param string $serializedString

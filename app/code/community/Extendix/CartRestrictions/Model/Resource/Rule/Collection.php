@@ -1,11 +1,10 @@
 <?php
 /**
- * Sales Rules resource collection model
- *
- * @category    Mage
- * @package     Mage_SalesRule
- * @author      Magento Core Team <core@magentocommerce.com>
+ * @author      Tsvetan Stoychev <t.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
  */
+
 class Extendix_CartRestrictions_Model_Resource_Rule_Collection
     extends Mage_Rule_Model_Resource_Rule_Collection_Abstract
 {
@@ -47,12 +46,13 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
      * @param string|null $now
      * @use $this->addWebsiteGroupDateFilter()
      *
-     * @return Mage_SalesRule_Model_Resource_Rule_Collection
+     * @return Extendix_CartRestrictions_Model_Resource_Rule_Collection
      */
     public function setValidationFilter($websiteId, $customerGroupId, $now = null)
     {
         if (!$this->getFlag('validation_filter')) {
 
+            /** @todo: check this rest may be I don't need it */
             /* We need to overwrite joinLeft if coupon is applied */
             $this->getSelect()->reset();
             parent::_initSelect();
@@ -74,7 +74,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
      * @param string|null $now
      * @use $this->addWebsiteFilter()
      *
-     * @return Mage_SalesRule_Model_Mysql4_Rule_Collection
+     * @return Extendix_CartRestrictions_Model_Mysql4_Rule_Collection
      */
     public function addWebsiteGroupDateFilter($websiteId, $customerGroupId, $now = null)
     {
@@ -114,13 +114,15 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
      *
      * @param string $attributeCode
      *
-     * @return Mage_SalesRule_Model_Resource_Rule_Collection
+     * @return Extendix_CartRestrictions_Model_Resource_Rule_Collection
      */
     public function addAttributeInConditionFilter($attributeCode)
     {
         $match = sprintf('%%%s%%', substr(serialize(array('attribute' => $attributeCode)), 5, -1));
         $field = $this->_getMappedField('conditions_serialized');
         $cCond = $this->_getConditionSql($field, array('like' => $match));
+
+        /** @todo: MAy be we don't need the action thingi */
         $field = $this->_getMappedField('actions_serialized');
         $aCond = $this->_getConditionSql($field, array('like' => $match));
 
