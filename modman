@@ -1,0 +1,3 @@
+app/etc/modules/Extendix_CartRestrictions.xml app/etc/modules/Extendix_CartRestrictions.xml
+app/code/community/Extendix/CartRestrictions app/code/community/Extendix/CartRestrictions
+app/design/adminhtml/default/default/layout/extendix_cartrestrictions.xml app/design/adminhtml/default/default/layout/extendix_cartrestrictions.xml

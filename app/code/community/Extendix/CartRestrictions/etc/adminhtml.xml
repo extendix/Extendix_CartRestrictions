@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Tsvetan Stoychev <t.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+-->
+<config>
+    <menu>
+        <extendix_cartrestrictions translate="title" module="extendix_cartrestrictions">
+            <title>Cart Restrictions</title>
+            <sort_order>30</sort_order>
+            <children>
+                <manage_restrictions translate="title" module="speedy_simple_shipping">
+                    <title>Manage Restrictions</title>
+                    <action>adminhtml/extendixCartRestrictions_quote</action>
+                    <sort_order>0</sort_order>
+                </manage_restrictions>
+            </children>
+        </extendix_cartrestrictions>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <extendix_cartrestrictions translate="title" module="extendix_cartrestrictions">
+                        <title>Cart Restrictions</title>
+                        <sort_order>30</sort_order>
+                        <children>
+                            <manage_restrictions translate="title">
+                                <title>Manage Restrictions</title>
+                            </manage_restrictions>
+                        </children>
+                    </extendix_cartrestrictions>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

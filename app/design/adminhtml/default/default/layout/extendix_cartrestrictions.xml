@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Tsvetan Stoychev <tsvetan.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+-->
+<layout>
+    <adminhtml_extendixcartrestrictions_quote_index>
+        <reference name="content">
+            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote" name="promo_quote" />
+        </reference>
+    </adminhtml_extendixcartrestrictions_quote_index>
+    <adminhtml_extendixcartrestrictions_quote_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+        </reference>
+        <reference name="left">
+            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit_tabs" name="promo_quote_edit_tabs">
+                <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit_tab_main" name="promo_quote_edit_tab_main" />
+                <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit_tab_conditions" name="promo_quote_edit_tab_conditions"/>
+                <action method="addTab"><name>main_section</name><block>promo_quote_edit_tab_main</block></action>
+                <action method="addTab"><name>conditions_section</name><block>promo_quote_edit_tab_conditions</block></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit" name="promo_quote_edit" />
+        </reference>
+    </adminhtml_extendixcartrestrictions_quote_edit>
+</layout>

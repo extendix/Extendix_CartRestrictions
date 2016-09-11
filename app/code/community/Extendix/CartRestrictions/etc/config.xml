@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Tsvetan Stoychev <t.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+-->
+<config>
+    <modules>
+        <Extendix_CartRestrictions>
+            <version>1.0.0</version>
+        </Extendix_CartRestrictions>
+    </modules>
+    <global>
+        <models>
+            <extendix_cartrestrictions>
+                <class>Extendix_CartRestrictions_Model</class>
+                <resourceModel>extendix_cartrestrictions_resource</resourceModel>
+            </extendix_cartrestrictions>
+            <extendix_cartrestrictions_resource>
+                <class>Extendix_CartRestrictions_Model_Resource</class>
+                <deprecatedNode>extendix_cartrestrictions_mysql4</deprecatedNode>
+                <entities>
+                    <rule>
+                        <table>extendix_cartrestrictions_rule</table>
+                    </rule>
+                    <product_attribute>
+                        <table>extendix_cartrestrictions_rule_product_attribute</table>
+                    </product_attribute>
+                    <website>
+                        <table>extendix_cartrestrictions_rule_website</table>
+                    </website>
+                    <customer_group>
+                        <table>extendix_cartrestrictions_srule_customer_group</table>
+                    </customer_group>
+                </entities>
+            </extendix_cartrestrictions_resource>
+        </models>
+        <resources>
+            <extendix_cartrestrictions>
+                <setup>
+                    <module>Extendix_CartRestrictions</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </extendix_cartrestrictions>
+        </resources>
+        <helpers>
+            <extendix_cartrestrictions>
+                <class>Extendix_CartRestrictions_Helper</class>
+            </extendix_cartrestrictions>
+        </helpers>
+        <blocks>
+            <extendix_cartrestrictions>
+                <class>Extendix_CartRestrictions_Block</class>
+            </extendix_cartrestrictions>
+        </blocks>
+    </global>
+    <frontend>
+        <events>
+            <sales_quote_load_after>
+                <observers>
+                    <extendix_cartrestrictions_process_quote_rules>
+                        <type>singleton</type>
+                        <class>extendix_cartrestrictions/observer</class>
+                        <method>processQuoteRules</method>
+                    </extendix_cartrestrictions_process_quote_rules>
+                </observers>
+            </sales_quote_load_after>
+        </events>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <extendix_cartrestrictions before="Mage_Adminhtml">Extendix_CartRestrictions_Adminhtml</extendix_cartrestrictions>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <extendix_cartrestrictions>
+                    <file>extendix_cartrestrictions.xml</file>
+                </extendix_cartrestrictions>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
