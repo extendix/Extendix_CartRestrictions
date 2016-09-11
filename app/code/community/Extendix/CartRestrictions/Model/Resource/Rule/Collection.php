@@ -51,12 +51,6 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
     public function setValidationFilter($websiteId, $customerGroupId, $now = null)
     {
         if (!$this->getFlag('validation_filter')) {
-
-            /** @todo: check this rest may be I don't need it */
-            /* We need to overwrite joinLeft if coupon is applied */
-            $this->getSelect()->reset();
-            parent::_initSelect();
-
             $this->addWebsiteGroupDateFilter($websiteId, $customerGroupId, $now);
             $this->setFlag('validation_filter', true);
         }
@@ -74,7 +68,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule_Collection
      * @param string|null $now
      * @use $this->addWebsiteFilter()
      *
-     * @return Extendix_CartRestrictions_Model_Mysql4_Rule_Collection
+     * @return Extendix_CartRestrictions_Model_Resource_Rule_Collection
      */
     public function addWebsiteGroupDateFilter($websiteId, $customerGroupId, $now = null)
     {
