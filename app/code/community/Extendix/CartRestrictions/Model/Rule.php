@@ -127,4 +127,38 @@ class Extendix_CartRestrictions_Model_Rule
         return $address;
     }
 
+    /**
+     * Set if not yet and retrieve rule store messages
+     *
+     * @return array
+     */
+    public function getStoreMessages()
+    {
+        if (!$this->hasStoreMessages()) {
+            $messages = $this->_getResource()->getStoreMessages($this->getId());
+            $this->setStoreMessages($messages);
+        }
+
+        return $this->_getData('store_messages');
+    }
+
+    /**
+     * Initialize rule model data from array.
+     * Set store messages if applicable.
+     *
+     * @param array $data
+     *
+     * @return Extendix_CartRestrictions_Model_Rule
+     */
+    public function loadPost(array $data)
+    {
+        parent::loadPost($data);
+
+        if (isset($data['store_messages'])) {
+            $this->setStoreMessages($data['store_messages']);
+        }
+
+        return $this;
+    }
+
 }

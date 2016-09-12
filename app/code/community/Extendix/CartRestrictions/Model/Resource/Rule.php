@@ -53,7 +53,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
 
     /**
      * Bind cart restriction rule to customer group(s) and website(s).
-     * Save rule's associated store labels.
+     * Save rule's associated store messages.
      * Save product attributes used in rule.
      *
      * @param Mage_Core_Model_Abstract $object
@@ -62,8 +62,8 @@ class Extendix_CartRestrictions_Model_Resource_Rule
      */
     protected function _afterSave(Mage_Core_Model_Abstract $object)
     {
-        if ($object->hasStoreLabels()) {
-            $this->saveStoreLabels($object->getId(), $object->getStoreLabels());
+        if ($object->hasStoreMessages()) {
+            $this->saveStoreMessages($object->getId(), $object->getStoreMessages());
         }
 
         if ($object->hasWebsiteIds()) {
@@ -173,6 +173,71 @@ class Extendix_CartRestrictions_Model_Resource_Rule
         }
 
         return $result;
+    }
+
+    /**
+     * Get all existing rule messages
+     *
+     * @param int $ruleId
+     * @return array
+     */
+    public function getStoreMessages($ruleId)
+    {
+        $select = $this->_getReadAdapter()->select()
+            ->from($this->getTable('extendix_cartrestrictions/message'), array('store_id', 'message'))
+            ->where('rule_id = :rule_id');
+        return $this->_getReadAdapter()->fetchPairs($select, array(':rule_id' => $ruleId));
+    }
+
+    /**
+     * Save rule messages for different store views
+     *
+     * @param int $ruleId
+     * @param array $messages
+     *
+     * @return Extendix_CartRestrictions_Model_Resource_Rule
+     *
+     * @throws Exception
+     */
+    public function saveStoreMessages($ruleId, array $messages)
+    {
+        $deleteByStoreIds = array();
+        $table   = $this->getTable('extendix_cartrestrictions/message');
+        $adapter = $this->_getWriteAdapter();
+
+        $data    = array();
+        foreach ($messages as $storeId => $message) {
+            if (Mage::helper('core/string')->strlen($message)) {
+                $data[] = array('rule_id' => $ruleId, 'store_id' => $storeId, 'message' => $message);
+            } else {
+                $deleteByStoreIds[] = $storeId;
+            }
+        }
+
+        $adapter->beginTransaction();
+        try {
+            if (!empty($data)) {
+                $adapter->insertOnDuplicate(
+                    $table,
+                    $data,
+                    array('message')
+                );
+            }
+
+            if (!empty($deleteByStoreIds)) {
+                $adapter->delete($table, array(
+                    'rule_id=?'       => $ruleId,
+                    'store_id IN (?)' => $deleteByStoreIds
+                ));
+            }
+        } catch (Exception $e) {
+            $adapter->rollback();
+            throw $e;
+
+        }
+        $adapter->commit();
+
+        return $this;
     }
 
 }

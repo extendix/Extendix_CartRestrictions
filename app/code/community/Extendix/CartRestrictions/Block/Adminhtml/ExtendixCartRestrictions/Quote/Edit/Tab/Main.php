@@ -162,6 +162,59 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_E
 
         $form->setValues($model->getData());
 
+        /**
+         * Further development idea: May be decoupling this in UI component (Tools for developers)
+         */
+        $defaultMessageFieldset = $form->addFieldset('default_message_fieldset', array(
+            'legend' => Mage::helper('extendix_cartrestrictions')->__('Default Message')
+        ));
+
+        $messages = $model->getStoreMessages();
+
+        $defaultMessageFieldset->addField('store_default_message', 'text', array(
+            'name'      => 'store_messages[0]',
+            'required'  => false,
+            'label'     => Mage::helper('salesrule')->__('Default Rule Message for All Store Views'),
+            'value'     => isset($messages[0]) ? $messages[0] : '',
+        ));
+
+        $storeMessagesFieldset = $form->addFieldset('store_messages_fieldset', array(
+            'legend'       => Mage::helper('extendix_cartrestrictions')->__('Store View Specific Messages'),
+            'table_class'  => 'form-list stores-tree',
+        ));
+
+        $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset');
+        $storeMessagesFieldset->setRenderer($renderer);
+
+        foreach (Mage::app()->getWebsites() as $website) {
+            $storeMessagesFieldset->addField("w_{$website->getId()}_message", 'note', array(
+                'label'    => $website->getName(),
+                'fieldset_html_class' => 'website',
+            ));
+            foreach ($website->getGroups() as $group) {
+                $stores = $group->getStores();
+
+                if (count($stores) == 0) {
+                    continue;
+                }
+
+                $storeMessagesFieldset->addField("sg_{$group->getId()}_message", 'note', array(
+                    'label'    => $group->getName(),
+                    'fieldset_html_class' => 'store-group',
+                ));
+
+                foreach ($stores as $store) {
+                    $storeMessagesFieldset->addField("s_{$store->getId()}", 'text', array(
+                        'name'      => 'store_messages['.$store->getId().']',
+                        'required'  => false,
+                        'label'     => $store->getName(),
+                        'value'     => isset($messages[$store->getId()]) ? $messages[$store->getId()] : '',
+                        'fieldset_html_class' => 'store',
+                    ));
+                }
+            }
+        }
+
         $this->setForm($form);
 
         Mage::dispatchEvent('adminhtml_promo_quote_edit_tab_main_prepare_form', array('form' => $form));

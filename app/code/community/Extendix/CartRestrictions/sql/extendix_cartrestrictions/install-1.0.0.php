@@ -167,4 +167,42 @@ $table = $installer->getConnection()->newTable($installer->getTable('extendix_ca
     ->setComment('Extendix Cart Restrictions Rules To Customer Groups Relations');
 $installer->getConnection()->createTable($table);
 
+/**
+ * Create table 'extendix_cartrestrictions/message'
+ *
+ * @todo: reconsider making the message field longer text
+ */
+$table = $installer->getConnection()
+    ->newTable($installer->getTable('extendix_cartrestrictions/message'))
+    ->addColumn('message_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+        'identity'  => true,
+        'unsigned'  => true,
+        'nullable'  => false,
+        'primary'   => true,
+    ), 'Message Id')
+    ->addColumn('rule_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+        'unsigned'  => true,
+        'nullable'  => false,
+    ), 'Rule Id')
+    ->addColumn('store_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array(
+        'unsigned'  => true,
+        'nullable'  => false,
+    ), 'Store Id')
+    ->addColumn('message', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
+    ), 'Message')
+    ->addIndex($installer->getIdxName('extendix_cartrestrictions/message', array('rule_id', 'store_id'), Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
+        array('rule_id', 'store_id'), array('type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE))
+    ->addIndex($installer->getIdxName('extendix_cartrestrictions/message', array('store_id')),
+        array('store_id'))
+    ->addIndex($installer->getIdxName('extendix_cartrestrictions/message', array('rule_id')),
+        array('rule_id'))
+    ->addForeignKey($installer->getFkName('extendix_cartrestrictions/message', 'rule_id', 'extendix_cartrestrictions/rule', 'rule_id'),
+        'rule_id', $installer->getTable('extendix_cartrestrictions/rule'), 'rule_id',
+        Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
+    ->addForeignKey($installer->getFkName('extendix_cartrestrictions/message', 'store_id', 'core/store', 'store_id'),
+        'store_id', $installer->getTable('core/store'), 'store_id',
+        Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE)
+    ->setComment('Extendix Cart Restrictions Rules Messages');
+$installer->getConnection()->createTable($table);
+
 $installer->endSetup();

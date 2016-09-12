@@ -242,7 +242,7 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_QuoteControll
      */
     protected function _isAllowed()
     {
-        /** Testing */
+        /** @todo: Implement correct configuration */
         return true;
         return Mage::getSingleton('admin/session')->isAllowed('promo/quote');
     }

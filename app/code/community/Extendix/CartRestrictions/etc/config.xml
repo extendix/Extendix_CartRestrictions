@@ -32,8 +32,11 @@
                         <table>extendix_cartrestrictions_rule_website</table>
                     </website>
                     <customer_group>
-                        <table>extendix_cartrestrictions_srule_customer_group</table>
+                        <table>extendix_cartrestrictions_rule_customer_group</table>
                     </customer_group>
+                    <message>
+                        <table>extendix_cartrestrictions_rule_message</table>
+                    </message>
                 </entities>
             </extendix_cartrestrictions_resource>
         </models>
