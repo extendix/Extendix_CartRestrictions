@@ -173,7 +173,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_E
 
         $defaultMessageFieldset->addField('store_default_message', 'text', array(
             'name'      => 'store_messages[0]',
-            'required'  => false,
+            'required'  => true,
             'label'     => Mage::helper('salesrule')->__('Default Rule Message for All Store Views'),
             'value'     => isset($messages[0]) ? $messages[0] : '',
         ));
