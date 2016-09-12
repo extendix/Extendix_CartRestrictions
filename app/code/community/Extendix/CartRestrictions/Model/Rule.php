@@ -143,6 +143,27 @@ class Extendix_CartRestrictions_Model_Rule
     }
 
     /**
+     * Get Rule message by specified store
+     *
+     * @param Mage_Core_Model_Store|int|bool|null $store
+     *
+     * @return string|bool
+     */
+    public function getStoreMessage($store = null)
+    {
+        $storeId = Mage::app()->getStore($store)->getId();
+        $messages = (array)$this->getStoreMessages();
+
+        if (isset($messages[$storeId])) {
+            return $messages[$storeId];
+        } elseif (isset($messages[0]) && $messages[0]) {
+            return $messages[0];
+        }
+
+        return false;
+    }
+
+    /**
      * Initialize rule model data from array.
      * Set store messages if applicable.
      *
