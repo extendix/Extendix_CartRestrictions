@@ -154,7 +154,10 @@ class Extendix_CartRestrictions_Model_Resource_Rule
 
     /**
      *
-     * @todo: Check the regex. May be I have to change salesrule/rule_condition_product
+     * @todo: Check why the hell they first serialize it and then using regex?
+     *
+     * @todo: Check also this even sales_quote_config_get_product_attributes where we attach attribute codes.
+     *          Probably we have also to attach the attributes from this module to quote item product
      *
      * Collect all product attributes used in serialized rule's condition
      *
@@ -165,7 +168,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     public function getProductAttributes($serializedString)
     {
         $result = array();
-        if (preg_match_all('~s:32:"salesrule/rule_condition_product";s:9:"attribute";s:\d+:"(.*?)"~s',
+        if (preg_match_all('~s:48:"extendix_cartrestrictions/rule_condition_product";s:9:"attribute";s:\d+:"(.*?)"~s',
             $serializedString, $matches)){
             foreach ($matches[1] as $offset => $attributeCode) {
                 $result[] = $attributeCode;
