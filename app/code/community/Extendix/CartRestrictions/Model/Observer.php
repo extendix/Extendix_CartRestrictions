@@ -14,7 +14,9 @@ class Extendix_CartRestrictions_Model_Observer
      */
     public function processQuoteRules(Varien_Event_Observer $observer)
     {
-        $this->_getProcessModel()->processRules($observer->getEvent()->getQuote());
+        if ($this->_getConfigHelper()->isActive()) {
+            $this->_getProcessModel()->processRules($observer->getEvent()->getQuote());
+        }
 
         return $this;
     }
@@ -25,6 +27,14 @@ class Extendix_CartRestrictions_Model_Observer
     protected function _getProcessModel()
     {
         return Mage::getModel('extendix_cartrestrictions/process');
+    }
+
+    /**
+     * @return Extendix_CartRestrictions_Helper_Config
+     */
+    protected function _getConfigHelper()
+    {
+        return Mage::helper('extendix_cartrestrictions/config');
     }
 
 }

@@ -92,4 +92,11 @@
             </updates>
         </layout>
     </adminhtml>
+    <default>
+        <extendix_cartrestrictions>
+            <settings>
+                <enabled>0</enabled>
+            </settings>
+        </extendix_cartrestrictions>
+    </default>
 </config>
