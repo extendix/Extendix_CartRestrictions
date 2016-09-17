@@ -70,6 +70,14 @@
                     </extendix_cartrestrictions_process_quote_rules>
                 </observers>
             </sales_quote_load_after>
+            <sales_quote_config_get_product_attributes>
+                <observers>
+                    <salesrule>
+                        <class>extendix_cartrestrictions/observer</class>
+                        <method>addProductAttributes</method>
+                    </salesrule>
+                </observers>
+            </sales_quote_config_get_product_attributes>
         </events>
     </frontend>
     <admin>

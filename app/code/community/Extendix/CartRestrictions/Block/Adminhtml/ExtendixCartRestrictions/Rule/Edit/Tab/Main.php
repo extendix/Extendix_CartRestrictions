@@ -217,8 +217,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Ed
 
         $this->setForm($form);
 
-        /** @todo: Change the name of this event */
-        Mage::dispatchEvent('adminhtml_promo_quote_edit_tab_main_prepare_form', array('form' => $form));
+        Mage::dispatchEvent('extendix_cartrestrictions_rule_edit_tab_main_prepare_form', array('form' => $form));
 
         return parent::_prepareForm();
     }

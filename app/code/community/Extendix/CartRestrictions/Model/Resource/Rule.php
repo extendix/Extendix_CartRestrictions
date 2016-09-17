@@ -96,17 +96,16 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     /**
      * Return codes of all product attributes currently used in cart restrictions rules for specified customer group and website
      *
-     * @param unknown_type $websiteId
-     * @param unknown_type $customerGroupId
      * @return mixed
      */
-    public function getActiveAttributes($websiteId, $customerGroupId)
+    public function getActiveAttributes()
     {
         $read = $this->_getReadAdapter();
         $select = $read->select()
             ->from(array('a' => $this->getTable('extendix_cartrestrictions/product_attribute')),
                 new Zend_Db_Expr('DISTINCT ea.attribute_code'))
             ->joinInner(array('ea' => $this->getTable('eav/attribute')), 'ea.attribute_id = a.attribute_id', array());
+
         return $read->fetchAll($select);
     }
 
@@ -153,11 +152,6 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     }
 
     /**
-     *
-     * @todo: Check why the hell they first serialize it and then using regex?
-     *
-     * @todo: Check also this even sales_quote_config_get_product_attributes where we attach attribute codes.
-     *          Probably we have also to attach the attributes from this module to quote item product
      *
      * Collect all product attributes used in serialized rule's condition
      *
