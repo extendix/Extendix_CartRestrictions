@@ -200,6 +200,17 @@ class Extendix_CartRestrictions_Model_Rule
                 ->__('Conditions are empty. You are not allowed to save rule with empty condition because this condition will be always valid and customers would be never able to reach the checkout page! In practice nobody would be able to buy from your shop!');
         }
 
+        /**
+         * Check if we have default store message. In case we don't have any then we would
+         * not show any messages to the customer but the checkout button would not be visible.
+         * That's dangerous!!!
+         */
+        $storeMessages = $object->getData('store_messages');
+        if (!is_array($storeMessages) || empty($storeMessages[0])) {
+            $validationMessages[] = Mage::helper('extendix_cartrestrictions')
+                ->__('Having default Rule message is mandatory. Otherwise the customer would not be able to get any feedback why he/she can\'t complete the checkout!');
+        }
+
         return !empty($validationMessages) ? $validationMessages : true;
     }
 
