@@ -5,7 +5,7 @@
  * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
  */
 
-class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_Edit
+class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Edit
     extends Mage_Adminhtml_Block_Widget_Form_Container
 {
 
@@ -18,7 +18,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_E
     {
         $this->_objectId   = 'id';
         $this->_blockGroup = 'extendix_cartrestrictions';
-        $this->_controller = 'adminhtml_extendixCartRestrictions_quote';
+        $this->_controller = 'adminhtml_extendixCartRestrictions_rule';
 
         parent::__construct();
 

@@ -7,26 +7,26 @@
  */
 -->
 <layout>
-    <adminhtml_extendixcartrestrictions_quote_index>
+    <adminhtml_extendixcartrestrictions_rule_index>
         <reference name="content">
-            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote" name="promo_quote" />
+            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_rule" name="restriction_rule" />
         </reference>
-    </adminhtml_extendixcartrestrictions_quote_index>
-    <adminhtml_extendixcartrestrictions_quote_edit>
+    </adminhtml_extendixcartrestrictions_rule_index>
+    <adminhtml_extendixcartrestrictions_rule_edit>
         <reference name="head">
             <action method="setCanLoadExtJs"><flag>1</flag></action>
             <action method="setCanLoadRulesJs"><flag>1</flag></action>
         </reference>
         <reference name="left">
-            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit_tabs" name="promo_quote_edit_tabs">
-                <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit_tab_main" name="promo_quote_edit_tab_main" />
-                <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit_tab_conditions" name="promo_quote_edit_tab_conditions"/>
-                <action method="addTab"><name>main_section</name><block>promo_quote_edit_tab_main</block></action>
-                <action method="addTab"><name>conditions_section</name><block>promo_quote_edit_tab_conditions</block></action>
+            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_rule_edit_tabs" name="restriction_rule_edit_tabs">
+                <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_rule_edit_tab_main" name="restriction_rule_edit_tab_main" />
+                <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_rule_edit_tab_conditions" name="restriction_rule_edit_tab_conditions"/>
+                <action method="addTab"><name>main_section</name><block>restriction_rule_edit_tab_main</block></action>
+                <action method="addTab"><name>conditions_section</name><block>restriction_rule_edit_tab_conditions</block></action>
             </block>
         </reference>
         <reference name="content">
-            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_quote_edit" name="promo_quote_edit" />
+            <block type="extendix_cartrestrictions/adminhtml_extendixCartRestrictions_rule_edit" name="restriction_rule_edit" />
         </reference>
-    </adminhtml_extendixcartrestrictions_quote_edit>
+    </adminhtml_extendixcartrestrictions_rule_edit>
 </layout>

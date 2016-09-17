@@ -5,7 +5,7 @@
  * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
  */
 
-class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_Grid
+class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Grid
     extends Mage_Adminhtml_Block_Widget_Grid
 {
 
@@ -16,7 +16,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_G
     public function __construct()
     {
         parent::__construct();
-        $this->setId('promo_quote_grid');
+        $this->setId('restriction_rule_grid');
         $this->setDefaultSort('sort_order');
         $this->setDefaultDir('ASC');
         $this->setSaveParametersInSession(true);
@@ -26,7 +26,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_G
      * Add websites to cart restriction rule collection
      * Set collection
      *
-     * @return Mage_Adminhtml_Block_Promo_Quote_Grid
+     * @return Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Grid
      */
     protected function _prepareCollection()
     {
@@ -43,7 +43,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_G
     /**
      * Add grid columns
      *
-     * @return Mage_Adminhtml_Block_Promo_Quote_Grid
+     * @return Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Grid
      */
     protected function _prepareColumns()
     {

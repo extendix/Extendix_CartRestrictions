@@ -5,14 +5,14 @@
  * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
  */
 
-class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Quote_Edit_Form
+class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Edit_Form
     extends Mage_Adminhtml_Block_Widget_Form
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->setId('promo_quote_form');
+        $this->setId('restriction_rule_form');
         $this->setTitle(Mage::helper('extendix_cartrestrictions')->__('Rule Information'));
     }
 

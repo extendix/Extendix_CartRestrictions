@@ -12,9 +12,9 @@
             <title>Cart Restrictions</title>
             <sort_order>30</sort_order>
             <children>
-                <manage_restrictions translate="title" module="speedy_simple_shipping">
+                <manage_restrictions translate="title" module="extendix_cartrestrictions">
                     <title>Manage Restrictions</title>
-                    <action>adminhtml/extendixCartRestrictions_quote</action>
+                    <action>adminhtml/extendixCartRestrictions_rule</action>
                     <sort_order>0</sort_order>
                 </manage_restrictions>
             </children>
