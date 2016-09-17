@@ -182,4 +182,25 @@ class Extendix_CartRestrictions_Model_Rule
         return $this;
     }
 
+    /**
+     * @param Varien_Object $object
+     * @return array|bool
+     */
+    public function validateData(Varien_Object $object)
+    {
+        $validationMessages = parent::validateData($object);
+        $validationMessages = true === $validationMessages ? array() : $validationMessages;
+
+        /** @var array $ruleData */
+        $ruleData = $object->getData('rule');
+
+        /** Checking if conditions are empty. It's in customers interest if we don't save such conditions! */
+        if (!is_array($ruleData['conditions']) || 1 >= count($ruleData['conditions'])) {
+            $validationMessages[] = Mage::helper('extendix_cartrestrictions')
+                ->__('Conditions are empty. You are not allowed to save rule with empty condition because this condition will be always valid and customers would be never able to reach the checkout page! In practice nobody would be able to buy from your shop!');
+        }
+
+        return !empty($validationMessages) ? $validationMessages : true;
+    }
+
 }
