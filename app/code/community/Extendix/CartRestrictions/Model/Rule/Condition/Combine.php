@@ -36,6 +36,8 @@ class Extendix_CartRestrictions_Model_Rule_Condition_Combine
         ));
 
         $additional = new Varien_Object();
+
+        /** This is how we can attach custom validation models! */
         Mage::dispatchEvent('extendix_cartrestrictions_rule_condition_combine', array('additional' => $additional));
         if ($additionalConditions = $additional->getConditions()) {
             $conditions = array_merge_recursive($conditions, $additionalConditions);
