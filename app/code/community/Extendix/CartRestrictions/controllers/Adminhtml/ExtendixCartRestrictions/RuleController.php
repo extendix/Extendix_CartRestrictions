@@ -28,9 +28,7 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_RuleControlle
     protected function _initAction()
     {
         $this->loadLayout()
-            ->_setActiveMenu('extendix_cartrestrictions/manage_restrictions')
-            ->_addBreadcrumb(Mage::helper('extendix_cartrestrictions')->__('Promotions'), Mage::helper('extendix_cartrestrictions')->__('Promotions'))
-        ;
+            ->_setActiveMenu('extendix_cartrestrictions/manage_restrictions');
         return $this;
     }
 
@@ -219,21 +217,6 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_RuleControlle
     {
         $this->_initAction();
         $this->renderLayout();
-    }
-
-    /**
-     * Chooser source action
-     *
-     * @todo: Do we really need this in this controller? I guess that this method dones't have anything to do with
-     * cart validation functionality
-     */
-    public function chooserAction()
-    {
-        $uniqId = $this->getRequest()->getParam('uniq_id');
-        $chooserBlock = $this->getLayout()->createBlock('adminhtml/promo_widget_chooser', '', array(
-            'id' => $uniqId
-        ));
-        $this->getResponse()->setBody($chooserBlock->toHtml());
     }
 
     /**

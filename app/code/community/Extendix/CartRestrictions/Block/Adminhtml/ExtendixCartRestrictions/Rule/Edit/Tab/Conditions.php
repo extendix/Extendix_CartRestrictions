@@ -61,6 +61,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Ed
 
         $form->setHtmlIdPrefix('rule_');
 
+        /** @todo: May be I should move promo/fieldset.phtml in my module */
         $renderer = Mage::getBlockSingleton('adminhtml/widget_form_renderer_fieldset')
             ->setTemplate('promo/fieldset.phtml')
             ->setNewChildUrl($this->getUrl('*/*/newConditionHtml/form/rule_conditions_fieldset'));

@@ -94,7 +94,7 @@ class Extendix_CartRestrictions_Model_Resource_Rule
     }
 
     /**
-     * Return codes of all product attributes currently used in promo rules for specified customer group and website
+     * Return codes of all product attributes currently used in cart restrictions rules for specified customer group and website
      *
      * @param unknown_type $websiteId
      * @param unknown_type $customerGroupId

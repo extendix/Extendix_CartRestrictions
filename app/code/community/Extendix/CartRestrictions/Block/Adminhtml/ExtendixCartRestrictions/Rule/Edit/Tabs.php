@@ -12,7 +12,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Ed
     public function __construct()
     {
         parent::__construct();
-        $this->setId('promo_catalog_edit_tabs');
+        $this->setId('restriction_rule_edit_tabs');
         $this->setDestElementId('edit_form');
         $this->setTitle(Mage::helper('extendix_cartrestrictions')->__('Cart Restriction Rules'));
     }
