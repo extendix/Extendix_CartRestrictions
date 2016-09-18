@@ -8,6 +8,8 @@
 class Extendix_CartRestrictions_Model_Observer
 {
 
+    /** @todo: Add checks that are disabling rules in case a promo attribute was deleted or modified */
+
     /**
      * @param Varien_Event_Observer $observer
      * @return Extendix_CartValidationRules_Model_Observer
