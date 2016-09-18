@@ -61,6 +61,16 @@
     </global>
     <frontend>
         <events>
+            <!--
+            Right now we are using event sales_quote_load_after there are some small disadvantages because we have
+            manually to pre-calculate some address properties but:
+
+            event sales_quote_collect_totals_after is very good place to execute the validation
+            logic at this even because if we execute the code earlier some data may not persist in Objects needed for validation process.
+
+            Good example is the quote address that may not contain property 'total_qty' if we use an event that
+            is executed earlier because in collect totals we attach some required data for some validation rules
+            -->
             <sales_quote_load_after>
                 <observers>
                     <extendix_cartrestrictions_process_quote_rules>

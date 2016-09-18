@@ -14,16 +14,26 @@ class Extendix_CartRestrictions_Model_Rule_Condition_Address
      */
     public function loadAttributeOptions()
     {
+        /**
+         * @todo: Commented some of those attributes because they are not very important for the cart.
+         *
+         * Also 'total_qty' can be calculated during the event I am using right now (sale_quote_load_after).
+         *
+         * I could use sales_quote_collect_totals_after but then I can use it only in cart.
+         * I have problem at Onepage Checkout because validation check for
+         * error is done before sales_quote_collect_totals_after event. Basically I attach the error messages but
+         * the checkout precess just don't handle them.
+         */
         $attributes = array(
             'base_subtotal' => Mage::helper('extendix_cartrestrictions')->__('Subtotal'),
-            'total_qty' => Mage::helper('extendix_cartrestrictions')->__('Total Items Quantity'),
+//            'total_qty' => Mage::helper('extendix_cartrestrictions')->__('Total Items Quantity'),
             'weight' => Mage::helper('extendix_cartrestrictions')->__('Total Weight'),
-            'payment_method' => Mage::helper('extendix_cartrestrictions')->__('Payment Method'),
-            'shipping_method' => Mage::helper('extendix_cartrestrictions')->__('Shipping Method'),
-            'postcode' => Mage::helper('extendix_cartrestrictions')->__('Shipping Postcode'),
-            'region' => Mage::helper('extendix_cartrestrictions')->__('Shipping Region'),
-            'region_id' => Mage::helper('extendix_cartrestrictions')->__('Shipping State/Province'),
-            'country_id' => Mage::helper('extendix_cartrestrictions')->__('Shipping Country'),
+//            'payment_method' => Mage::helper('extendix_cartrestrictions')->__('Payment Method'),
+//            'shipping_method' => Mage::helper('extendix_cartrestrictions')->__('Shipping Method'),
+//            'postcode' => Mage::helper('extendix_cartrestrictions')->__('Shipping Postcode'),
+//            'region' => Mage::helper('extendix_cartrestrictions')->__('Shipping Region'),
+//            'region_id' => Mage::helper('extendix_cartrestrictions')->__('Shipping State/Province'),
+//            'country_id' => Mage::helper('extendix_cartrestrictions')->__('Shipping Country'),
         );
 
         $this->setAttributeOption($attributes);
@@ -47,11 +57,16 @@ class Extendix_CartRestrictions_Model_Rule_Condition_Address
     public function getInputType()
     {
         switch ($this->getAttribute()) {
-            case 'base_subtotal': case 'weight': case 'total_qty':
+            case 'base_subtotal':
+            case 'weight':
+            case 'total_qty':
                 return 'numeric';
 
-            case 'shipping_method': case 'payment_method': case 'country_id': case 'region_id':
-                return 'select';
+//            case 'shipping_method':
+//            case 'payment_method':
+//            case 'country_id':
+//            case 'region_id':
+//                return 'select';
         }
         return 'string';
     }
@@ -121,9 +136,11 @@ class Extendix_CartRestrictions_Model_Rule_Condition_Address
             }
         }
 
-        if ('payment_method' == $this->getAttribute() && ! $address->hasPaymentMethod()) {
-            $address->setPaymentMethod($object->getQuote()->getPayment()->getMethod());
-        }
+//        if ('payment_method' == $this->getAttribute() && ! $address->hasPaymentMethod()) {
+//            $address->setPaymentMethod($object->getQuote()->getPayment()->getMethod());
+//        }
+
+        echo $address->getWeight();
 
         return parent::validate($address);
     }
