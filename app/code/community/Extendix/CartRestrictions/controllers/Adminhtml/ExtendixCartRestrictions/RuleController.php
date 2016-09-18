@@ -225,7 +225,7 @@ class Extendix_CartRestrictions_Adminhtml_ExtendixCartRestrictions_RuleControlle
      */
     protected function _isAllowed()
     {
-        return Mage::getSingleton('admin/session')->isAllowed('extendix_cartrestrictions/manage_restrictions');
+        return Mage::getSingleton('admin/session')->isAllowed('sales/extendix_cartrestrictions/manage_restrictions');
     }
 
     /**

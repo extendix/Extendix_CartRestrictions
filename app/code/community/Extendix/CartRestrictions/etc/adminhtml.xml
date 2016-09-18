@@ -8,17 +8,21 @@
 -->
 <config>
     <menu>
-        <extendix_cartrestrictions translate="title" module="extendix_cartrestrictions">
-            <title>Cart Restrictions</title>
-            <sort_order>30</sort_order>
+        <sales>
             <children>
-                <manage_restrictions translate="title" module="extendix_cartrestrictions">
-                    <title>Manage Restrictions</title>
-                    <action>adminhtml/extendixCartRestrictions_rule</action>
-                    <sort_order>0</sort_order>
-                </manage_restrictions>
+                <extendix_cartrestrictions translate="title" module="extendix_cartrestrictions">
+                    <title>Cart Restrictions</title>
+                    <sort_order>700</sort_order>
+                    <children>
+                        <manage_restrictions translate="title" module="extendix_cartrestrictions">
+                            <title>Manage Restrictions</title>
+                            <action>adminhtml/extendixCartRestrictions_rule</action>
+                            <sort_order>0</sort_order>
+                        </manage_restrictions>
+                    </children>
+                </extendix_cartrestrictions>
             </children>
-        </extendix_cartrestrictions>
+        </sales>
     </menu>
     <acl>
         <resources>
@@ -36,15 +40,19 @@
                             </config>
                         </children>
                     </system>
-                    <extendix_cartrestrictions translate="title" module="extendix_cartrestrictions">
-                        <title>Cart Restrictions</title>
-                        <sort_order>30</sort_order>
+                    <sales>
                         <children>
-                            <manage_restrictions translate="title">
-                                <title>Manage Restrictions</title>
-                            </manage_restrictions>
+                            <extendix_cartrestrictions translate="title" module="extendix_cartrestrictions">
+                                <title>Cart Restrictions</title>
+                                <sort_order>700</sort_order>
+                                <children>
+                                    <manage_restrictions translate="title">
+                                        <title>Manage Restrictions</title>
+                                    </manage_restrictions>
+                                </children>
+                            </extendix_cartrestrictions>
                         </children>
-                    </extendix_cartrestrictions>
+                    </sales>
                 </children>
             </admin>
         </resources>
