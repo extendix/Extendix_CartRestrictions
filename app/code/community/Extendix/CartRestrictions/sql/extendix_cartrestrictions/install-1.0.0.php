@@ -169,7 +169,6 @@ $installer->getConnection()->createTable($table);
 
 /**
  * Create table 'extendix_cartrestrictions/message'
- *
  */
 $table = $installer->getConnection()
     ->newTable($installer->getTable('extendix_cartrestrictions/message'))
