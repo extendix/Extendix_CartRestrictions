@@ -171,7 +171,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Ed
 
         $messages = $model->getStoreMessages();
 
-        $defaultMessageFieldset->addField('store_default_message', 'text', array(
+        $defaultMessageFieldset->addField('store_default_message', 'textarea', array(
             'name'      => 'store_messages[0]',
             'required'  => true,
             'label'     => Mage::helper('salesrule')->__('Default Rule Message for All Store Views'),
@@ -204,7 +204,7 @@ class Extendix_CartRestrictions_Block_Adminhtml_ExtendixCartRestrictions_Rule_Ed
                 ));
 
                 foreach ($stores as $store) {
-                    $storeMessagesFieldset->addField("s_{$store->getId()}", 'text', array(
+                    $storeMessagesFieldset->addField("s_{$store->getId()}", 'textarea', array(
                         'name'      => 'store_messages['.$store->getId().']',
                         'required'  => false,
                         'label'     => $store->getName(),

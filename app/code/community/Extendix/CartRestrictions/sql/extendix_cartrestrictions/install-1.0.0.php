@@ -170,7 +170,6 @@ $installer->getConnection()->createTable($table);
 /**
  * Create table 'extendix_cartrestrictions/message'
  *
- * @todo: reconsider making the message field longer text
  */
 $table = $installer->getConnection()
     ->newTable($installer->getTable('extendix_cartrestrictions/message'))
@@ -188,7 +187,7 @@ $table = $installer->getConnection()
         'unsigned'  => true,
         'nullable'  => false,
     ), 'Store Id')
-    ->addColumn('message', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
+    ->addColumn('message', Varien_Db_Ddl_Table::TYPE_TEXT, '64k', array(
     ), 'Message')
     ->addIndex($installer->getIdxName('extendix_cartrestrictions/message', array('rule_id', 'store_id'), Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
         array('rule_id', 'store_id'), array('type' => Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE))
