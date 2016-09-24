@@ -140,8 +140,6 @@ class Extendix_CartRestrictions_Model_Rule_Condition_Address
 //            $address->setPaymentMethod($object->getQuote()->getPayment()->getMethod());
 //        }
 
-        echo $address->getWeight();
-
         return parent::validate($address);
     }
 
